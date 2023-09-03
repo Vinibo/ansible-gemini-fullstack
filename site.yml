@@ -1,0 +1,15 @@
+---
+- hosts: all
+
+  roles:
+  - role: common
+  - role: vinibo.agate
+  - role: vinibo.september
+    when: september_proxy_enabled | bool
+    
+  post_tasks:
+    - debug:
+        msg: "🚀 Gemini pod available on gemini://{{ agate_root_domain }}:{{ agate_port }}"
+    - debug:
+        msg: "🕸 September server available on http://{{ agate_root_domain }}:80"
+      when: september_proxy_enabled | bool

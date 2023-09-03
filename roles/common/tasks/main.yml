@@ -1,0 +1,37 @@
+---
+- name: "Set hostname to {{ hostname }}"
+  hostname:
+    name: "{{ hostname }}"
+
+- name: "Set timezone to {{ timezone }}"
+  community.general.timezone:
+    name: "{{ timezone }}"
+  become: true
+
+- name: Install packages
+  become: yes
+  package:
+    name:
+      - git
+      - avahi-daemon
+      - libnss-mdns
+    state: latest
+
+- name: Start Avahi deamon for mDNS advertisement
+  systemd:
+    state: restarted
+    name: avahi-daemon
+    enabled: true
+
+- name: Create Git user
+  ansible.builtin.user:
+    name: git
+  when: enable_git
+
+- name: Set authorized key taken from file
+  ansible.posix.authorized_key:
+    user: git
+    state: present
+    key: "{{ git_public_key }}"
+  when: enable_git
+

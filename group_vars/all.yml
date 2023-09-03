@@ -1,0 +1,16 @@
+---
+timezone: Canada/Eastern
+
+agate_binary_repo_url: https://github.com/mbrubeck/agate
+agate_version_tag: v3.3.1
+agate_port: 1965
+
+agate_root: /srv/gemini
+agate_domain: "{{ hostname }}.local"
+
+september_proxy_enabled: true
+proxy_gemini_domain: "{{ hostname }}.local"
+september_css: https://vanillacss.com/vanilla.css
+
+enable_git: false
+git_public_key: ""

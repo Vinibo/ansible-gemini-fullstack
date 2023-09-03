@@ -1,0 +1,8 @@
+---
+roles:
+  - vinibo.agate
+  - vinibo.september
+
+collections:
+  - community.general
+  - ansible.posix

@@ -1,0 +1,7 @@
+.vagrant
+
+# Ignore custom inventories
+inventories/*
+
+# Do not ignore the test inventory
+!inventories/test
